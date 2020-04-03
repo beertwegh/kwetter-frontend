@@ -1,5 +1,4 @@
 import { Component } from "@angular/core";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { AuthenticationService } from "./REST/authentication.service";
 import { AppConfig } from "./app.config";
 import { Router } from "@angular/router";
@@ -10,7 +9,6 @@ import { Router } from "@angular/router";
 })
 export class AppComponent {
   title = "Kwetter";
-  home = faHome;
   loggedIn: boolean = false;
   constructor(
     private authService: AuthenticationService,
@@ -24,7 +22,8 @@ export class AppComponent {
       this.loggedIn = loggedIn;
 
       if (loggedIn) {
-        this.router.navigateByUrl("/dashboard");
+        console.log("succces")
+    //    this.router.navigateByUrl("/dashboard");
       } else {
         localStorage.removeItem(AppConfig.LocalStorageKeys.TOKEN);
         this.router.navigateByUrl("/login");
