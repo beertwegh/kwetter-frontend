@@ -4,35 +4,31 @@ import { Observable, of, BehaviorSubject, from } from "rxjs";
 import { map, catchError } from "rxjs/operators";
 import { user } from "../domain/user";
 import { AppConfig } from "../app.config";
-import { CookieService } from "ngx-cookie-service"
+import { CookieService } from "ngx-cookie-service";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class AuthenticationService {
   private isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  constructor(private http: HttpClient,
-    private cookieService: CookieService) {}
+  constructor(private http: HttpClient, private cookieService: CookieService) {}
 
   /** GET login codes from the server */
   getLogin(clientnr: string, password: string) {
-    const URL = `${AppConfig.ApiBaseURL}/login`;
+    const URL = `${AppConfig.ApiBaseURL}${AppConfig.ApiUrls.LOGIN}`;
     this.http
-      .post<HttpResponse<any>>(
-        URL,
-        { username: clientnr, password },
-        { observe: "response" }
-      )
+      .post(URL, { username: clientnr, password }, { responseType: "text" })
       .subscribe(
-        response => {
-          var token = response.headers.get("Authorization");
+        (response: string) => {
+          debugger;
+          var token = (response as unknown) as string;
           if (token) {
             //localStorage.setItem(AppConfig.LocalStorageKeys.TOKEN, token);
-            this.cookieService.set('authorization-key', token);
+            this.cookieService.set("authorization-key", token);
           }
           this.isLoggedIn.next(!!token);
         },
-        error => {
+        (error) => {
           console.error(error);
         }
       );
@@ -46,7 +42,7 @@ export class AuthenticationService {
   //* Get authorization token */
   public getAuthorizationToken(): string {
     //return localStorage.getItem(AppConfig.LocalStorageKeys.TOKEN);
-    return this.cookieService.get('authorization-key');
+    return this.cookieService.get("authorization-key");
   }
 
   //* Logout */
@@ -58,7 +54,7 @@ export class AuthenticationService {
   postRegister(user: user): Observable<any> {
     const serverURL = AppConfig.ApiBaseURL + "UserController/registration";
     return this.http.post<user>(serverURL, user).pipe(
-      map(result => (result as unknown) as string),
+      map((result) => (result as unknown) as string),
       catchError(this.handleError<any>("postRegistert"))
     );
   }

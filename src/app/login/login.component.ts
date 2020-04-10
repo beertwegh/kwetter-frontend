@@ -8,7 +8,7 @@ import { AuthenticationService } from "../REST/authentication.service";
   styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit {
-  clientNr: string;
+  username: string;
   password: string;
   loginResult: boolean;
 
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login(): void {
-    this.authenticationService.getLogin(this.clientNr, this.password);
+    this.authenticationService.getLogin(this.username, this.password);
   }
 
   register(): void {
