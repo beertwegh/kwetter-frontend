@@ -17,7 +17,7 @@ export class AppComponent {
     this.subscribeEvents();
   }
 
-  subscribeEvents(): void {
+  subscribeEvents(): void {    
     this.authService.loggedIn().subscribe(loggedIn => {
       this.loggedIn = loggedIn;
 
@@ -25,9 +25,8 @@ export class AppComponent {
         console.log("logged in")
     //    this.router.navigateByUrl("/dashboard");
       } else {
-        localStorage.removeItem(AppConfig.LocalStorageKeys.TOKEN);
         this.router.navigateByUrl("/login");
       }
-    });
+    });    
   }
 }

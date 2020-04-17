@@ -1,8 +1,8 @@
 export class AppConfig {
-  static ApiBaseURL = "http://localhost:63129/";
+  static ApiBaseURL = "https://localhost:9001/api/";
 
   static ApiUrls = {
-    LOGIN:"Authentication"
+    LOGIN:"auth"
   };
   static LocalStorageKeys = {
     TOKEN: "token"

@@ -4,21 +4,24 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
 import { MyprofileComponent } from "./myprofile/myprofile.component";
-import { Authentication } from './app-routing-guards';
+import { Authentication } from "./app-routing-guards";
+import { AppComponent } from "./app.component";
 const routes: Routes = [
   {
     path: "dashboard",
     component: DashboardComponent,
-    canActivate: [Authentication]
+    canActivate: [Authentication],
   },
-  { path: "", redirectTo: "/login", pathMatch: "full" },
+  { path: "", component: AppComponent, pathMatch: "full" },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
-  { path: "myprofile", component: MyprofileComponent, canActivate: [Authentication] }
+  {
+    path: "myprofile",
+    component: MyprofileComponent,
+    canActivate: [Authentication],
+  },
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes)]  
+  imports: [RouterModule.forRoot(routes)],
 })
-export class AppRoutingModule {
-    
-}
+export class AppRoutingModule {}
