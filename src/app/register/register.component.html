@@ -7,21 +7,20 @@
     <form class="example-form">
       <input
         type="text"
-        placeholder="Client Number"
-        [(ngModel)]="customerCode"
-        id="customerCode"
-        name="customerCode"
-        [value]="customerCode"
-        required
-      />
-
-      <input
-        type="text"
         placeholder="Email address"
         [(ngModel)]="email"
         id="email"
         name="email"
         [value]="email"
+        required
+      />
+      <input
+        type="text"
+        placeholder="Username"
+        [(ngModel)]="username"
+        id="username"
+        name="username"
+        [value]="username"
         required
       />
 
@@ -44,7 +43,34 @@
         [value]="passwordConfirm"
         required
       />
+      <input
+        type="text"
+        placeholder="Locatie"
+        [(ngModel)]="location"
+        id="location"
+        name="location"
+        [value]="location"
+        required
+      />
+      <input
+        type="text"
+        placeholder="Web"
+        [(ngModel)]="web"
+        id="web"
+        name="web"
+        [value]="web"
+        required
+      />
+      <input
+        type="text"
+        placeholder="Bio"
+        [(ngModel)]="bio"
+        id="bio"
+        name="bio"
+        [value]="bio"
+        required
+      />
     </form>
-    <button class="register-button"(click)="register()">Register</button>
+    <button class="register-button" (click)="register()">Register</button>
   </div>
 </div>

@@ -1,22 +1,22 @@
 export class UserDetails {
-    Location: string;
-    Web: string;
-    Bio: string;
+    location: string;
+    web: string;
+    bio: string;
     constructor(obj: UserDetailsData = {} as UserDetails) {
       const { 
-          Location = "",
-          Web = "",
-          Bio = ""
+          location = "",
+          web = "",
+          bio = ""
       } = obj;
-  this.Location = Location;
-  this.Web = Web;
-  this.Bio = Bio;
+  this.location = location;
+  this.web = web;
+  this.bio = bio;
     }
   }
   
   export interface UserDetailsData {
-    Location: string;
-    Web: string;
-    Bio: string;
+    location: string;
+    web: string;
+    bio: string;
   }
   

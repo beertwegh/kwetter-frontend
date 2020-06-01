@@ -1,11 +1,31 @@
 <div class="profile-container" *ngIf="profileModel">
   <div class="profile col-md-6">
-    <img src="{{ profileModel.ProfilePicture }}" />
+    <img
+      src="https://www.ibts.org/wp-content/uploads/2017/08/iStock-476085198.jpg"
+    />
+    <!-- <div class="row">
+      Name: <input value="{{ profileModel.profileName }}" />
+    </div> -->
+    <div class="row">Name: {{ profileModel.profileName }}</div>
   </div>
-  <div class="details col-md-6">
-    <div class="row">Name: {{ profileModel.ProfileName }}</div>
-    <div class="row">Location: {{ profileModel.Location }}</div>
-    <div class="row">Web: {{ profileModel.Location }}</div>
-    <div class="row">Bio: {{ profileModel.Bio }}</div>
+  <div class="details col-md-6" *ngIf="profileModel && userModel && !edit">
+    <div class="row">Location: {{ userModel.location }}</div>
+    <div class="row">Web: {{ userModel.web }}</div>
+    <div class="row">Bio: {{ userModel.bio }}</div>
+    <button class="button" (click)="toggleEdit()">{{ buttontext }}</button>
+  </div>
+  <div class="details col-md-6" *ngIf="profileModel && userModel && edit">
+    <div class="row">
+      Location:
+      <input [(ngModel)]="userModel.location" value="userModel.location" />
+    </div>
+
+    <div class="row">
+      Web: <input [(ngModel)]="userModel.web" value="userModel.web" />
+    </div>
+    <div class="row">
+      Bio: <input [(ngModel)]="userModel.bio" value="userModel.bio" />
+    </div>
+    <button class="button" (click)="toggleEdit()">{{ buttontext }}</button>
   </div>
 </div>

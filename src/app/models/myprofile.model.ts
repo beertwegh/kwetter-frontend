@@ -1,14 +1,14 @@
 export class MyProfile {
-  ProfileName: string;
-  ProfilePicture: string;
+  profileName: string;
+  profilePicture: string;
   constructor(obj: MyProfileData = {} as MyProfile) {
-    const { ProfileName = "", ProfilePicture = "" } = obj;
-    this.ProfileName = ProfileName;
-    this.ProfilePicture = ProfilePicture;
+    const { profileName = "", profilePicture = "" } = obj;
+    this.profileName = profileName;
+    this.profilePicture = profilePicture;
   }
 }
 
 export interface MyProfileData {
-  ProfileName: string;
-  ProfilePicture: string;
+  profileName: string;
+  profilePicture: string;
 }

@@ -1,10 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpHeaders, HttpClient, HttpResponse } from "@angular/common/http";
-import { Observable, of, BehaviorSubject, from } from "rxjs";
-import { map, catchError } from "rxjs/operators";
-import { user } from "../domain/user";
+import { Observable, of, BehaviorSubject, from, Subscription } from "rxjs";
 import { AppConfig } from "../app.config";
 import { CookieService } from "ngx-cookie-service";
+import { RegistrationUser } from "../models/registrationuser.model";
 
 @Injectable({
   providedIn: "root",
@@ -53,12 +52,11 @@ export class AuthenticationService {
   }
 
   /** POST: add a new user to the server */
-  postRegister(user: user): Observable<any> {
-    const serverURL = AppConfig.ApiBaseURL + "UserController/registration";
-    return this.http.post<user>(serverURL, user).pipe(
-      map((result) => (result as unknown) as string),
-      catchError(this.handleError<any>("postRegistert"))
-    );
+  postRegister(user: RegistrationUser) {
+    const serverURL = AppConfig.ApiBaseURL + AppConfig.ApiUrls.REGISTER;
+    return this.http
+      .post<RegistrationUser>(serverURL, user);
+    
   }
 
   /**
