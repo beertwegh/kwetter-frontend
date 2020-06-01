@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
   title = "Kwetter";
@@ -17,16 +17,16 @@ export class AppComponent {
     this.subscribeEvents();
   }
 
-  subscribeEvents(): void {    
-    this.authService.loggedIn().subscribe(loggedIn => {
+  subscribeEvents(): void {
+    this.authService.loggedIn().subscribe((loggedIn) => {
       this.loggedIn = loggedIn;
 
       if (loggedIn) {
-        console.log("logged in")
-    //    this.router.navigateByUrl("/dashboard");
+        console.log("logged in");
+        this.router.navigateByUrl("/myprofile");
       } else {
         this.router.navigateByUrl("/login");
       }
-    });    
+    });
   }
 }

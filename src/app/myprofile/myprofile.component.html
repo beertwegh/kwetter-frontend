@@ -1,64 +1,31 @@
-<div class="profile-container" *ngIf="model">
-  <div class="gegevens">
-    <h2>Adresgegevens</h2>
-    <textinput
-      [value]="model.firstName"
-      [disabled]="true"
-      [label]="'Voornaam'"
-    ></textinput>
-    <textinput
-      [value]="model.lastName"
-      [disabled]="true"
-      [label]="'Achternaam'"
-    ></textinput>
-
-    <textinput
-      [value]="model.street"
-      [disabled]="true"
-      [label]="'Straat'"
-    ></textinput>
-    <textinput
-      [value]="model.houseNumber"
-      [disabled]="true"
-      [label]="'Huisnummer'"
-    ></textinput>
-    <textinput
-      [value]="model.zipCode"
-      [disabled]="true"
-      [label]="'Postcode'"
-    ></textinput>
-    <textinput
-      [value]="model.city"
-      [disabled]="true"
-      [label]="'Woonplaats'"
-    ></textinput>
-    <h2>Contactgegevens</h2>
-    <textinput
-      [value]="model.customerCode"
-      [disabled]="true"
-      [label]="'Klantnummer'"
-    ></textinput>
-    <textinput
-      [value]="model.email"
-      [disabled]="true"
-      [label]="'E-mailadres'"
-    ></textinput>
-    <textinput
-      [value]="model.mobileNumber"
-      [label]="'Mobiel telefoonnummer'"
-      [disabled]="true"
-    ></textinput>
-    <textinput
-      [value]="model.phoneNumber"
-      [label]="'Telefoonnummer'"
-      [disabled]="true"
-    ></textinput>
+<div class="profile-container" *ngIf="profileModel">
+  <div class="profile col-md-6">
+    <img
+      src="https://www.ibts.org/wp-content/uploads/2017/08/iStock-476085198.jpg"
+    />
+    <!-- <div class="row">
+      Name: <input value="{{ profileModel.profileName }}" />
+    </div> -->
+    <div class="row">Name: {{ profileModel.profileName }}</div>
   </div>
-  <div class="changepass">
-    <h2>Wijzig je wachtwoord</h2>
-    <input placeholder="Huidige wachtwoord" />
-    <input placeholder="Nieuwe wachtwoord" />
-    <input placeholder="Bevestig wachtwoord" />
-    <button class="changepassbtn">Verander wachtwoord</button>
+  <div class="details col-md-6" *ngIf="profileModel && userModel && !edit">
+    <div class="row">Location: {{ userModel.location }}</div>
+    <div class="row">Web: {{ userModel.web }}</div>
+    <div class="row">Bio: {{ userModel.bio }}</div>
+    <button class="button" (click)="toggleEdit()">{{ buttontext }}</button>
+  </div>
+  <div class="details col-md-6" *ngIf="profileModel && userModel && edit">
+    <div class="row">
+      Location:
+      <input [(ngModel)]="userModel.location" value="userModel.location" />
+    </div>
+
+    <div class="row">
+      Web: <input [(ngModel)]="userModel.web" value="userModel.web" />
+    </div>
+    <div class="row">
+      Bio: <input [(ngModel)]="userModel.bio" value="userModel.bio" />
+    </div>
+    <button class="button" (click)="toggleEdit()">{{ buttontext }}</button>
   </div>
 </div>
