@@ -7,5 +7,9 @@ export class AppConfig {
     GETUSERDETAILS: "user/details",
     REGISTER: "User/Register",
     EDITUSER: "User/EditUser",
+    NEWTWEET: "message/new",
+    GETALLTWEETS: "message/all",
+    EDITPROFILENAME:"profile/editname",
+    DELETEUSER:"user/delete"
   };
 }

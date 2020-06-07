@@ -22,6 +22,7 @@ import { MyprofileComponent } from "./myprofile/myprofile.component";
 import { TextinputComponent } from "./custom-components/textinput/textinput.component";
 import { Authentication } from "./app-routing-guards";
 import { httpInterceptors } from "./REST/http-interceptors/interceptors";
+import { TimelineComponent } from './timeline/timeline.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import { httpInterceptors } from "./REST/http-interceptors/interceptors";
     RegisterComponent,
     MyprofileComponent,
     TextinputComponent,
+    TimelineComponent
   ],
   imports: [
     BrowserModule,

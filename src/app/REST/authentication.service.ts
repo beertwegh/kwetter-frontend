@@ -4,13 +4,14 @@ import { Observable, of, BehaviorSubject, from, Subscription } from "rxjs";
 import { AppConfig } from "../app.config";
 import { CookieService } from "ngx-cookie-service";
 import { RegistrationUser } from "../models/registrationuser.model";
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthenticationService {
   private isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  constructor(private http: HttpClient, private cookieService: CookieService) {
+  constructor(private http: HttpClient, private cookieService: CookieService, private router : Router) {
     var token = this.cookieService.get("authorization-key");
     this.isLoggedIn.next(!!token);
   }
@@ -26,6 +27,7 @@ export class AuthenticationService {
           if (token) {
             //localStorage.setItem(AppConfig.LocalStorageKeys.TOKEN, token);
             this.cookieService.set("authorization-key", token);
+            this.router.navigateByUrl("/myprofile");
           }
           this.isLoggedIn.next(!!token);
         },
@@ -48,6 +50,7 @@ export class AuthenticationService {
 
   //* Logout */
   public logOut(): void {
+    this.cookieService.deleteAll();
     this.isLoggedIn.next(false);
   }
 

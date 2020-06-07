@@ -30,6 +30,8 @@ export class RegisterComponent implements OnInit {
     user.Password = this.password;
     user.Email = this.email;
     user.UserName = this.username;
+    user.Location = this.location;
+    user.ProfileName = this.username;
     if (this.password === this.passwordConfirm) {
       this.authenticationService.postRegister(user).subscribe(
         (result) => {

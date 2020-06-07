@@ -5,6 +5,7 @@ import { RegisterComponent } from "./register/register.component";
 import { MyprofileComponent } from "./myprofile/myprofile.component";
 import { Authentication } from "./app-routing-guards";
 import { AppComponent } from "./app.component";
+import { TimelineComponent } from './timeline/timeline.component';
 const routes: Routes = [
   { path: "", redirectTo: "myprofile", pathMatch: "full" },
   { path: "login", component: LoginComponent },
@@ -13,7 +14,11 @@ const routes: Routes = [
     path: "myprofile",
     component: MyprofileComponent,
     canActivate: [Authentication],
-  },
+  },  {
+    path: "timeline",
+    component: TimelineComponent,
+    canActivate: [Authentication],
+  }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

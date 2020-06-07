@@ -23,7 +23,7 @@ export class AppComponent {
 
       if (loggedIn) {
         console.log("logged in");
-        this.router.navigateByUrl("/myprofile");
+     //   this.router.navigateByUrl("/myprofile");
       } else {
         this.router.navigateByUrl("/login");
       }

@@ -9,6 +9,8 @@ import { AppConfig } from "../app.config";
 import { MyProfile } from "../models/myprofile.model";
 import { UserDetails } from "../models/userdetails.model";
 import { ModelFactory } from "../REST/helpers/ModelFactory";
+import { AppComponent } from "../app.component";
+import { AuthenticationService } from "../REST/authentication.service";
 
 @Component({
   selector: "app-myprofile",
@@ -20,8 +22,14 @@ export class MyprofileComponent implements OnInit {
   profileModel: MyProfile;
   userModel: UserDetails;
   edit: boolean = false;
+  profileNameEdit: boolean = false;
+  profileButton: string = "Wijzig";
   buttontext: string = "Wijzig";
-  constructor(private http: HttpClient, private cdRef: ChangeDetectorRef) {
+  constructor(
+    private http: HttpClient,
+    private cdRef: ChangeDetectorRef,
+    private base: AuthenticationService
+  ) {
     this.init();
   }
   toggleEdit(): void {
@@ -36,6 +44,22 @@ export class MyprofileComponent implements OnInit {
       this.buttontext = "Opslaan";
     }
     this.edit = !this.edit;
+  }
+  toggleProfileNameEdit(): void {
+    if (this.profileNameEdit) {
+      this.profileButton = "Wijzig";
+      this.http
+        .post(
+          AppConfig.ApiBaseURL + AppConfig.ApiUrls.EDITPROFILENAME,
+          this.profileModel
+        )
+        .subscribe(() => {
+          this.init();
+        });
+    } else {
+      this.profileButton = "Opslaan";
+    }
+    this.profileNameEdit = !this.profileNameEdit;
   }
   init(): void {
     this.http
@@ -61,4 +85,16 @@ export class MyprofileComponent implements OnInit {
       });
   }
   ngOnInit(): void {}
+  deleteUser(): void {
+    if (confirm("Weet je zeker dat je de gebruiker wilt verwijderen?")) {
+      this.http
+        .delete(AppConfig.ApiBaseURL + AppConfig.ApiUrls.DELETEUSER)
+        .subscribe(
+          (res) => {
+            this.base.logOut();
+          },
+          (err) => {}
+        );
+    }
+  }
 }
