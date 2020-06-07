@@ -1,0 +1,76 @@
+<div class="register-container">
+  <div class="header">
+    <p class="registertext">Register</p>
+  </div>
+
+  <div class="form">
+    <form class="example-form">
+      <input
+        type="text"
+        placeholder="Email address"
+        [(ngModel)]="email"
+        id="email"
+        name="email"
+        [value]="email"
+        required
+      />
+      <input
+        type="text"
+        placeholder="Username"
+        [(ngModel)]="username"
+        id="username"
+        name="username"
+        [value]="username"
+        required
+      />
+
+      <input
+        type="password"
+        placeholder="Password"
+        [(ngModel)]="password"
+        id="password"
+        name="password"
+        [value]="password"
+        required
+      />
+
+      <input
+        type="password"
+        placeholder="Confirmation password"
+        [(ngModel)]="passwordConfirm"
+        id="passwordConfirm"
+        name="passwordConfirm"
+        [value]="passwordConfirm"
+        required
+      />
+      <input
+        type="text"
+        placeholder="Locatie"
+        [(ngModel)]="location"
+        id="location"
+        name="location"
+        [value]="location"
+        required
+      />
+      <input
+        type="text"
+        placeholder="Web"
+        [(ngModel)]="web"
+        id="web"
+        name="web"
+        [value]="web"
+        required
+      />
+      <input
+        type="text"
+        placeholder="Bio"
+        [(ngModel)]="bio"
+        id="bio"
+        name="bio"
+        [value]="bio"
+        required
+      />
+    </form>
+    <button class="register-button" (click)="register()">Register</button>
+  </div>
+</div>

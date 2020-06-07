@@ -1,0 +1,9 @@
+.profile-container {
+  display: flex;
+  .profile, .details {
+    border: 1px solid black;
+  }
+  img {
+    max-width: 20%;
+  }
+}

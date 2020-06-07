@@ -1,0 +1,34 @@
+<div class="profile-container" *ngIf="profileModel">
+  <div class="profile col-md-6">
+    <img
+      src="https://www.ibts.org/wp-content/uploads/2017/08/iStock-476085198.jpg"
+    />
+    <div class="row"  *ngIf="profileNameEdit">
+      Name: <input [(ngModel)]="profileModel.profileName" />
+    </div>
+    <div class="row" *ngIf="!profileNameEdit">Name: {{ profileModel.profileName }}</div>
+    <button class="button" (click)="toggleProfileNameEdit()">{{ profileButton }}</button>
+
+  </div>
+  <div class="details col-md-6" *ngIf="profileModel && userModel && !edit">
+    <div class="row">Location: {{ userModel.location }}</div>
+    <div class="row">Web: {{ userModel.web }}</div>
+    <div class="row">Bio: {{ userModel.bio }}</div>
+    <button class="button" (click)="toggleEdit()">{{ buttontext }}</button>
+  </div>
+  <div class="details col-md-6" *ngIf="profileModel && userModel && edit">
+    <div class="row">
+      Location:
+      <input [(ngModel)]="userModel.location" value="userModel.location" />
+    </div>
+
+    <div class="row">
+      Web: <input [(ngModel)]="userModel.web" value="userModel.web" />
+    </div>
+    <div class="row">
+      Bio: <input [(ngModel)]="userModel.bio" value="userModel.bio" />
+    </div>
+    <button class="button" (click)="toggleEdit()">{{ buttontext }}</button>
+    <button class="button" (click)="deleteUser()">Verwijder gebruiker</button>
+  </div>
+</div>
