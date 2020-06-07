@@ -1,0 +1,21 @@
+<div class="timeline-container">
+  <div class="col-md-6">
+    <form>
+      <h3>Plaats kweet</h3>
+      <textarea
+        cols="40"
+        rows="3"
+        [(ngModel)]="newTweet"
+        name="tweet"
+      ></textarea>
+      <button class="button" (click)="postTweet()">Plaats</button>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <div class="message" *ngFor="let message of tweets">
+      
+      <p>Verzender: {{ message.userName }}</p>
+      <p>Tweet: {{ message.messageText }}</p>
+    </div>
+  </div>
+</div>
